@@ -1,0 +1,444 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Latest",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "ItemService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/cr/v1/addclient": {
+      "post": {
+        "summary": "Add a client",
+        "operationId": "ItemService_AddClient",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddClientResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddClientRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/additem": {
+      "post": {
+        "summary": "Add an item",
+        "operationId": "ItemService_AddItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddItemResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/addtransaction": {
+      "post": {
+        "summary": "Add a transaction",
+        "operationId": "ItemService_AddTransaction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddTransactionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTransactionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/getclients": {
+      "get": {
+        "summary": "Get all clients",
+        "operationId": "ItemService_GetClients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetClientsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/getitems": {
+      "get": {
+        "summary": "Get all items",
+        "operationId": "ItemService_GetItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetItemsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/gettransactiondetails": {
+      "post": {
+        "summary": "Get transaction details by ID",
+        "operationId": "ItemService_GetTransactionDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetTransactionDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTransactionDetailsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ItemService"
+        ]
+      }
+    },
+    "/api/cr/v1/gettransactions": {
+      "get": {
+        "summary": "Get all transactions",
+        "operationId": "ItemService_GetTransactions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetTransactionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ItemService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddClientRequest": {
+      "type": "object",
+      "properties": {
+        "clientName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "AddClientResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AddItemRequest": {
+      "type": "object",
+      "properties": {
+        "itemName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "AddItemResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "AddTransactionRequest": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "itemId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Foreign key reference"
+        }
+      }
+    },
+    "AddTransactionResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Client": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "GetClientsResponse": {
+      "type": "object",
+      "properties": {
+        "clients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Client"
+          }
+        }
+      }
+    },
+    "GetItemsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Item"
+          }
+        }
+      }
+    },
+    "GetTransactionDetailsRequest": {
+      "type": "object",
+      "properties": {
+        "transactionId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "GetTransactionDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "transactionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clientId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "itemName": {
+          "type": "string"
+        },
+        "itemDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "GetTransactionsResponse": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Transaction"
+          }
+        }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "itemName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "Messages for Items"
+    },
+    "Transaction": {
+      "type": "object",
+      "properties": {
+        "transactionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clientId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "itemId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Foreign key reference to Item"
+        }
+      },
+      "title": "Messages for Transactions"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

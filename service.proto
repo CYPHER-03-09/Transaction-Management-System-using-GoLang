@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "Latest"
+        version: "1.0"
+    }
+};
+
+service ItemService {
+    // Add an item
+    rpc AddItem (AddItemRequest) returns (AddItemResponse) {
+        option (google.api.http) = {
+            post: "/api/cr/v1/additem"
+            body: "*"
+        };
+    }
+
+    // Get all items
+    rpc GetItems (Empty) returns (GetItemsResponse) {
+        option (google.api.http) = {
+            get: "/api/cr/v1/getitems"
+        };
+    }
+
+    // Add a client
+    rpc AddClient (AddClientRequest) returns (AddClientResponse) {
+        option (google.api.http) = {
+            post: "/api/cr/v1/addclient"
+            body: "*"
+        };
+    }
+
+    // Get all clients
+    rpc GetClients (Empty) returns (GetClientsResponse) {
+        option (google.api.http) = {
+            get: "/api/cr/v1/getclients"
+        };
+    }
+
+    // Add a transaction
+    rpc AddTransaction (AddTransactionRequest) returns (AddTransactionResponse) {
+        option (google.api.http) = {
+            post: "/api/cr/v1/addtransaction"
+            body: "*"
+        };
+    }
+
+    // Get all transactions
+    rpc GetTransactions (Empty) returns (GetTransactionsResponse) {
+        option (google.api.http) = {
+            get: "/api/cr/v1/gettransactions"
+        };
+    }
+
+    // Get transaction details by ID
+    rpc GetTransactionDetails (GetTransactionDetailsRequest) returns (GetTransactionDetailsResponse) {
+        option (google.api.http) = {
+             post: "/api/cr/v1/gettransactiondetails"
+             body: "*"
+        }; 
+    }
+}
+
+// Messages for Items
+message Item {
+    uint32 item_id = 1;
+    string item_name = 2;
+    string description = 3;
+}
+
+message AddItemRequest {
+    string item_name = 1;
+    string description = 2;
+}
+
+message AddItemResponse {
+    string message = 1;
+}
+
+message GetItemsResponse {
+    repeated Item items = 1;
+}
+
+message Client {
+    uint32 client_id = 1;
+    string client_name = 2;
+    string phone = 3;
+    string email = 4;
+}
+
+message AddClientRequest {
+    string client_name = 1;
+    string phone = 2;
+    string email = 3;
+}
+
+message AddClientResponse {
+    string message = 1;
+}
+
+message GetClientsResponse {
+    repeated Client clients = 1;
+}
+
+// Messages for Transactions
+message Transaction {
+    uint32 transaction_id = 1;
+    uint32 client_id = 2;
+    uint32 item_id = 3; // Foreign key reference to Item
+}
+
+message AddTransactionRequest {
+    uint32 client_id = 1;
+    uint32 item_id = 2; // Foreign key reference
+}
+
+message AddTransactionResponse {
+    string message = 1;
+}
+
+message GetTransactionsResponse {
+    repeated Transaction transactions = 1;
+}
+
+message GetTransactionDetailsRequest {
+    uint32 transaction_id = 1;
+}
+
+// message GetTransactionDetailsResponse {
+//      uint32 transaction_id = 1;
+//      string client_id = 2;
+//      string client_name = 3;
+//      uint32 item_id = 4;
+//      string item_name = 5;
+//      string item_description = 6;
+// }
+
+message GetTransactionDetailsResponse {
+    uint32 transaction_id = 1;
+    uint32 client_id = 2;
+    string client_name = 3;
+    string phone = 4;
+    string email = 5;
+    uint32 item_id = 6;
+    string item_name = 7;
+    string item_description = 8;
+}
+
+// message GetTransactionDetailsResponse {
+//     string status = 1;
+//     uint32 statusCode = 2;
+//     string message = 3;
+//     map<string, string> data = 4;
+//}
+  
+
+// Empty message
+message Empty {}

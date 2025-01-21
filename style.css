@@ -1,0 +1,27 @@
+body {
+  background-color: #f8f9fa;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+#itemsList,
+#clientsList,
+#transactionsList {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-group-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+.btn {
+  font-size: 1rem;
+}
